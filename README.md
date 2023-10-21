@@ -11,7 +11,7 @@ Simple starter template from [Professor's template project](https://github.com/d
 - `resources/`: supportive python scripts
     - `entityxxx`: the entity in the microservice structure
         - `xxx_data_service`: a class that understands how to connect to an external database and get data in and out of the database. (Eventually it will connect to database, but for now it reads data from `./data/xxx.json`.)
-        - `xxx_resources`: a interface to data_service.
+        - `xxx_resources`: an interface to data_service.
         - `xxx_models`: the data objects that can go back and forth in OpenAPI. (also define attributes here)
 
 - `static/`: html files
