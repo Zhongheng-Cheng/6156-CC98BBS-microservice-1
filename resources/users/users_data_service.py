@@ -25,7 +25,7 @@ class UserDataService(BaseDataService):
     def _load(self):
         fn = self._get_data_file_name()
         with open(fn, "r") as in_file:
-            self.user = json.load(in_file)
+            self.users = json.load(in_file)
 
     def _save(self):
         fn = self._get_data_file_name()
@@ -54,7 +54,7 @@ class UserDataService(BaseDataService):
         :return: A list of matching JSON records.
         """
         result = []
-
+        
         for s in self.users:
 
             if (user_id is None or (s.get("user_id", None) == user_id)) and \

@@ -4,7 +4,7 @@
         "user_name": "aatest",
         "password": "password",
         "email": "aa1234@columbia.edu",
-        "profile_picture": "",
+        "profile_picture": "1",
         "role": "Student"
     },
     {
@@ -12,7 +12,7 @@
         "user_name": "bbtest",
         "password": "password",
         "email": "bb1234@columbia.edu",
-        "profile_picture": "",
+        "profile_picture": "1",
         "role": "Admin"
     },
     {
@@ -20,7 +20,7 @@
         "user_name": "cctest",
         "password": "password",
         "email": "cc1234@columbia.edu",
-        "profile_picture": "",
+        "profile_picture": "1",
         "role": "Student"
     },
     {
@@ -28,7 +28,7 @@
         "user_name": "ddtest",
         "password": "password",
         "email": "dd1234@columbia.edu",
-        "profile_picture": "",
+        "profile_picture": "1",
         "role": "Student"
     },
     {
@@ -36,7 +36,7 @@
         "user_name": "eetest",
         "password": "password",
         "email": "ee1234@columbia.edu",
-        "profile_picture": "",
+        "profile_picture": "1",
         "role": "IT Faculty"
     }
 ]

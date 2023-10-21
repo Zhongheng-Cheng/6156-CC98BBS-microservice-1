@@ -10,7 +10,7 @@ class UsersResource(BaseResource):
     # It is also pretty sloppy code.
     #
 
-    def __init__(self, config):
+    def __init__(self, config: dict):
         super().__init__()
 
         self.data_service = config["data_service"]
