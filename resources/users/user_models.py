@@ -22,7 +22,7 @@ class UserModel(BaseModel):
                     "password": "password",
                     "email": "zc2737@columbia.edu",
                     "profile_picture": "",
-                    "role": "Ordinary user"
+                    "role": "Student"
                 }
             ]
         }
