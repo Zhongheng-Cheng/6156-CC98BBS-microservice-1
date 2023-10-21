@@ -1,0 +1,42 @@
+[
+    {
+        "user_id": "aa1234",
+        "user_name": "aatest",
+        "password": "password",
+        "email": "aa1234@columbia.edu",
+        "profile_picture": "",
+        "role": "Student"
+    },
+    {
+        "user_id": "bb1234",
+        "user_name": "bbtest",
+        "password": "password",
+        "email": "bb1234@columbia.edu",
+        "profile_picture": "",
+        "role": "Admin"
+    },
+    {
+        "user_id": "cc1234",
+        "user_name": "cctest",
+        "password": "password",
+        "email": "cc1234@columbia.edu",
+        "profile_picture": "",
+        "role": "Student"
+    },
+    {
+        "user_id": "dd1234",
+        "user_name": "ddtest",
+        "password": "password",
+        "email": "dd1234@columbia.edu",
+        "profile_picture": "",
+        "role": "Student"
+    },
+    {
+        "user_id": "ee1234",
+        "user_name": "eetest",
+        "password": "password",
+        "email": "ee1234@columbia.edu",
+        "profile_picture": "",
+        "role": "IT Faculty"
+    }
+]
