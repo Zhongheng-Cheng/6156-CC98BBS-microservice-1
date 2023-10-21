@@ -10,50 +10,35 @@ from typing import List, Union
 
 import uvicorn
 
-# from resources.students.students_resource import StudentsResource
-# from resources.students.students_data_service import StudentDataService
-# from resources.students.student_models import StudentModel, StudentRspModel
-# from resources.schools.school_models import SchoolRspModel, SchoolModel
-# from resources.schools.schools_resource import SchoolsResource
+from resources.users.users_resource import UsersResource
+from resources.users.users_data_service import UserDataService
+from resources.users.user_models import UserModel, UserRspModel
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+def get_data_service():
 
-# ******************************
-#
-# DFF TODO Show the class how to do this with a service factory instead of hard code.
+    config = {
+        "data_directory": "data",
+        "data_file": "users.json"
+    }
 
-
-# def get_data_service():
-
-#     config = {
-#         "data_directory": "/Users/donaldferguson/Dropbox/0-Examples/e6156-f23-template/data",
-#         "data_file": "students.json"
-#     }
-
-#     ds = StudentDataService(config)
-#     return ds
+    ds = UserDataService(config)
+    return ds
 
 
-# def get_student_resource():
-#     ds = get_data_service()
-#     config = {
-#         "data_service": ds
-#     }
-#     res = StudentsResource(config)
-#     return res
+def get_user_resource():
+    ds = get_data_service()
+    config = {
+        "data_service": ds
+    }
+    res = UsersResource(config)
+    return res
 
 
-# students_resource = get_student_resource()
-
-# schools_resource = SchoolsResource(config={"students_resource": students_resource})
-
-
-#
-# END TODO
-# **************************************
+users_resource = get_user_resource()
 
 
 @app.get("/")
@@ -61,54 +46,41 @@ async def root():
     return RedirectResponse("/static/index.html")
 
 
-# @app.get("/students", response_model=List[StudentRspModel])
-# async def get_students(uni: str = None, last_name: str = None, school_code: str = None):
-#     """
-#     Return a list of students matching a query string.
+@app.get("/users", response_model=List[UserRspModel])
+async def get_users(user_id: str = None, 
+                    user_name: str = None, 
+                    password: str = None,
+                    email: str = None,
+                    profile_picture: str = None,
+                    role: str = None):
+    """
+    Return a list of users matching a query string.
 
-#     - **uni**: student's UNI
-#     - **last_name**: student's last name
-#     - **school_code**: student's school.
-#     """
-#     result = students_resource.get_students(uni, last_name, school_code)
-#     return result
-
-
-# @app.get("/students/{uni}", response_model=Union[StudentRspModel, None])
-# async def get_student(uni: str):
-#     """
-#     Return a student based on UNI.
-
-#     - **uni**: student's UNI
-#     """
-#     result = None
-#     result = students_resource.get_students(uni)
-#     if len(result) == 1:
-#         result = result[0]
-#     else:
-#         raise HTTPException(status_code=404, detail="Not found")
-
-#     return result
+    - **user_id**: user's id
+    - **user_name**: user's name
+    - **password**: user's password
+    - **email**: user's email
+    - **profile_picture**: user's profile_picture
+    - **role**: user's role, ["Student", "Admin", "IT Faculty"]
+    """
+    result = users_resource.get_users(user_id, user_name, password, email, profile_picture, role)
+    return result
 
 
-# @app.get("/schools", response_model=List[SchoolRspModel])
-# async def get_schools():
-#     """
-#     Return a list of schools.
-#     """
-#     result = schools_resource.get_schools()
-#     return result
+@app.get("/users/{user_id}", response_model=Union[UserRspModel, None])
+async def get_user(user_id: str):
+    """
+    Return a user based on user_id.
 
-
-# @app.get("/schools/{school_code}/students", response_model=List[StudentRspModel])
-# async def get_schools_students(school_code, uni=None, last_name=None):
-#     """
-#     Return a list of schools.
-#     """
-#     result = schools_resource.get_schools_students(school_code, uni, last_name)
-#     return result
-
-
+    - **user_id**: user's id
+    """
+    result = None
+    result = users_resource.get_users(user_id)
+    if len(result) == 1:
+        result = result[0]
+    else:
+        raise HTTPException(status_code=404, detail="Not found")
+    return result
 
 
 if __name__ == "__main__":
