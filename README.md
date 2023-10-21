@@ -29,3 +29,7 @@ Simple starter template from [Professor's template project](https://github.com/d
 - Using a `python virtual environment` is a best practice.
 
 - This projects virtual environment is in `venv`.
+
+## Links
+
+- [6156 Project CC98BBS](https://docs.google.com/document/d/1S50GO37JrpRDcQUz2pgCLom3ZKrQc48kTfOB8hU2bRM/edit#heading=h.phx6jjg9mm5c)
