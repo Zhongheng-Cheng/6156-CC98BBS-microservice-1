@@ -2,7 +2,7 @@ import json
 import jwt
 import datetime
 
-# # issued at time
+# # issued_at time
 # iat = datetime.datetime.utcnow()
 # # expire time
 # exp = (datetime.datetime.utcnow() + datetime.timedelta(hours=100))
@@ -13,7 +13,6 @@ payload = {
     "iss": "your-app", # Issuer
     "audience": "your-api", # Audience
     "exp": int((datetime.datetime.utcnow() + datetime.timedelta(hours=100)).timestamp()), # Expiration (1 hour from now)
-    "iat": int(datetime.datetime.utcnow().timestamp()), # Issued at (current timestamp)
     "custom_claim": "some_value", # Custom claim
     "user_role": "admin" # Custom user role claim
 }
