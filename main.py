@@ -91,6 +91,18 @@ async def put_users(user_id: str = None,
     users_resource.update_user(**kwargs)
     return
 
+@app.delete('/users')
+async def delete_user(user_id: str = None, 
+                    user_name: str = None, 
+                    password: str = None,
+                    email: str = None,
+                    profile_picture: str = None,
+                    role: str = None
+                    ):
+    kwargs = {key: value for key, value in locals().items() if value is not None}
+    users_resource.delete_user(**kwargs)
+    return
+
 
 @app.get("/users/{user_id}", response_model=Union[UserRspModel, None])
 async def get_user(user_id: str):

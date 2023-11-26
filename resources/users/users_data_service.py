@@ -111,12 +111,8 @@ class UserDataService(BaseDataService):
             is_target_user = True
             for i in args.items():
                 if user[i[0]] != i[1]:
-                    print('None')
                     is_target_user = False
             if is_target_user:
-                print(user)
-                tmp = self.users.index(user)
-                print(tmp)
-                self.users.pop(tmp)
+                self.users.pop(self.users.index(user))
         self._save()
         return
