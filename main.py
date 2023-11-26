@@ -68,7 +68,14 @@ async def get_users(user_id: str = None,
 
 
 @app.post("/users")
-async def post_users(data: dict):
+async def post_users(user_id: str = None, 
+                    user_name: str = None, 
+                    password: str = None,
+                    email: str = None,
+                    profile_picture: str = None,
+                    role: str = None
+                    ):
+    users_resource.create_user(user_id, user_name, password, email, profile_picture, role)
     return 
 
 
