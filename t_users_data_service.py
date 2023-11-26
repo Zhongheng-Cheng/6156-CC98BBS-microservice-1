@@ -16,7 +16,7 @@ def get_data_service():
 def t1():
 
     ds = get_data_service()
-    users = ds.get_users(role="Student")
+    users = ds.get_users()
     print("t1: users = ", json.dumps(users, indent=2))
 
     
@@ -33,7 +33,7 @@ def t1():
 
     print('===================')
     ds = get_data_service()
-    users = ds.get_users(role="Student")
+    users = ds.get_users()
     print("t1: users = ", json.dumps(users, indent=2))
 
 if __name__ == "__main__":

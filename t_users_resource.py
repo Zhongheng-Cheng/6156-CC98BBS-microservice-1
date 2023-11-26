@@ -26,7 +26,7 @@ def get_user_resource():
 def t1():
 
     s = get_user_resource()
-    res = s.get_users(role="Student")
+    res = s.get_users()
     print("t1: res = ", json.dumps(res, indent=2, default=str))
     # s.create_user(
     #     user_id= "gg1234",
@@ -34,9 +34,9 @@ def t1():
     #     password= "password",
     #     email= "gg1234@columbia.edu",
     # )
-    # s.update_user(user_id='gg1234', password='ggpassword')
-    s.delete_user(user_id='gg1234')
-    res = s.get_users(role="Student")
+    s.update_user(user_id='gg1234', password='ggpassword')
+    # s.delete_user(user_id='gg1234')
+    res = s.get_users()
     print("t1: res = ", json.dumps(res, indent=2, default=str))
 
     
