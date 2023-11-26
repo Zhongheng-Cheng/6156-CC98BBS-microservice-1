@@ -22,14 +22,14 @@ def t1():
     
     print("=================")
     # creating new user
-    ds.create_user(
-        user_id= "gg1234",
-        user_name= "ggtest",
-        password= "password",
-        email= "gg1234@columbia.edu",
-    )
+    # ds.create_user(
+    #     user_id= "gg1234",
+    #     user_name= "ggtest",
+    #     password= "password",
+    #     email= "gg1234@columbia.edu",
+    # )
     # ds.update_user(user_id="ff1234", password="ffpassword")
-    # ds.delete_user(user_id='ff1234')
+    ds.delete_user(user_id='gg1234')
 
     print('===================')
     ds = get_data_service()

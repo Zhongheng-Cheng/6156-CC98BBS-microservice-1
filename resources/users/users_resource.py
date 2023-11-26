@@ -46,3 +46,14 @@ class UsersResource(BaseResource):
             final_result.append(m)
 
         return final_result
+    
+    def create_user(self,
+                  user_id: str = None, 
+                  user_name: str = None, 
+                  password: str = None,
+                  email: str = None,
+                  profile_picture: str = None,
+                  role: str = None
+                  ):
+        result = self.data_service.create_user(user_id, user_name, password, email, profile_picture, role)
+        return result

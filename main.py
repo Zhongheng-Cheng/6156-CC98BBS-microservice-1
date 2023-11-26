@@ -67,6 +67,11 @@ async def get_users(user_id: str = None,
     return result
 
 
+@app.post("/users")
+async def post_users(data: dict):
+    return 
+
+
 @app.get("/users/{user_id}", response_model=Union[UserRspModel, None])
 async def get_user(user_id: str):
     """
