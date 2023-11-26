@@ -57,3 +57,7 @@ class UsersResource(BaseResource):
                   ):
         result = self.data_service.create_user(user_id, user_name, password, email, profile_picture, role)
         return result
+    
+    def update_user(self, **args):
+        result = self.data_service.update_user(**args)
+        return result

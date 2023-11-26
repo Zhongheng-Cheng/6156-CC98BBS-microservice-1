@@ -28,12 +28,13 @@ def t1():
     s = get_user_resource()
     res = s.get_users(role="Student")
     print("t1: res = ", json.dumps(res, indent=2, default=str))
-    s.create_user(
-        user_id= "gg1234",
-        user_name= "ggtest",
-        password= "password",
-        email= "gg1234@columbia.edu",
-    )
+    # s.create_user(
+    #     user_id= "gg1234",
+    #     user_name= "ggtest",
+    #     password= "password",
+    #     email= "gg1234@columbia.edu",
+    # )
+    s.update_user(user_id='gg1234', password='ggpassword')
     res = s.get_users(role="Student")
     print("t1: res = ", json.dumps(res, indent=2, default=str))
 
