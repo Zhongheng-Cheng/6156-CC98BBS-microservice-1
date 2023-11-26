@@ -79,6 +79,9 @@ class UserDataService(BaseDataService):
             profile_picture = '1'
         if not role:
             role = 'Student'
+        if user_id in [user['user_id'] for user in self.users]:
+            print(f"user_id: {user_id} already exists")
+            return
         self.users.append({
             "user_id": user_id,
             "user_name": user_name,
@@ -100,5 +103,20 @@ class UserDataService(BaseDataService):
                     for i in args.items():
                         if i[0] in ['user_id', 'user_name', 'password', 'email', 'profile_picture', 'role']:
                             user[i[0]] = i[1]
-        print(self.users)
+        self._save()
+        return
+    
+    def delete_user(self, **args):
+        for user in self.users:
+            is_target_user = True
+            for i in args.items():
+                if user[i[0]] != i[1]:
+                    print('None')
+                    is_target_user = False
+            if is_target_user:
+                print(user)
+                tmp = self.users.index(user)
+                print(tmp)
+                self.users.pop(tmp)
+        self._save()
         return
