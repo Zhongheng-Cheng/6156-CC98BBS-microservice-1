@@ -61,3 +61,7 @@ class UsersResource(BaseResource):
     def update_user(self, **args):
         result = self.data_service.update_user(**args)
         return result
+    
+    def delete_user(self, **argv):
+        result = self.data_service.delete_user(**argv)
+        return result
