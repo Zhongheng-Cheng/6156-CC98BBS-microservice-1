@@ -66,3 +66,29 @@ class UserDataService(BaseDataService):
                 result.append(s)
 
         return result
+    
+    def create_user(self, 
+                  user_id: str = None, 
+                  user_name: str = None, 
+                  password: str = None,
+                  email: str = None,
+                  profile_picture: str = None,
+                  role: str = None
+                  ):
+        if not profile_picture:
+            profile_picture = '1'
+        if not role:
+            role = 'Student'
+        self.users.append({
+            "user_id": user_id,
+            "user_name": user_name,
+            "password": password,
+            "email": email,
+            "profile_picture": profile_picture,
+            "role": role
+        })
+        print("======================")
+        print(self.users)
+        print("======================")
+        self._save()
+        return
