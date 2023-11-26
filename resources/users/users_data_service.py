@@ -92,3 +92,13 @@ class UserDataService(BaseDataService):
         print("======================")
         self._save()
         return
+    
+    def update_user(self, **args):
+        if 'user_id' in args.keys():
+            for user in self.users:
+                if user['user_id'] == args['user_id']:
+                    for i in args.items():
+                        if i[0] in ['user_id', 'user_name', 'password', 'email', 'profile_picture', 'role']:
+                            user[i[0]] = i[1]
+        print(self.users)
+        return
