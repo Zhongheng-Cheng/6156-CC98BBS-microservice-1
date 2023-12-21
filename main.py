@@ -2,11 +2,12 @@
 # FastAPI is a framework and library for implementing REST web services in Python.
 # https://fastapi.tiangolo.com/
 #
-from fastapi import FastAPI, Response, HTTPException
+from fastapi import FastAPI, Response, HTTPException, Request
 from fastapi.responses import RedirectResponse
 
 from fastapi.staticfiles import StaticFiles
 from typing import List, Union
+import time
 
 import uvicorn
 
@@ -39,6 +40,15 @@ def get_user_resource():
 
 
 users_resource = get_user_resource()
+
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time.time()
+    response = await call_next(request)
+    process_time = time.time() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    return response
 
 
 @app.get("/")
