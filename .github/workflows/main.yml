@@ -20,21 +20,25 @@ jobs:
     #     service_account_key: ${{ secrets.GCP_SA_KEY }}
     #     export_default_credentials: true
 
-    # - name: Set up SSH key
+    - name: Set up SSH key
+      env:
+        ssh_private_key: ${{ secrets.ssh_private_key }}
+      run: |
+        echo "$ssh_private_key" > ssh_private_key
+        chmod 600 ssh_private_key
+
+        ssh -i ssh_private_key zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
+
+        # eval "$(ssh-agent -s)"
+        # ssh-add ssh_private_key
+
+
+    # - name: SSH to Google Cloud Server
     #   env:
     #     SUPER_SECRET: ${{ secrets.ssh_private_key }}
     #   run: |
-    #     echo "$ssh_private_key" > ssh_private_key
-    #     chmod 600 ssh_private_key
-    #     eval "$(ssh-agent -s)"
-    #     ssh-add ssh_private_key
-
-    - name: SSH to Google Cloud Server
-      env:
-        SUPER_SECRET: ${{ secrets.ssh_private_key }}
-      run: |
-        # Replace 'your-username' and 'your-gcp-server' with your actual values
-        ssh -i <(echo "$YOUR_PRIVATE_KEY") -o StrictHostKeyChecking=no zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
+    #     # Replace 'your-username' and 'your-gcp-server' with your actual values
+    #     ssh -i <(echo "$YOUR_PRIVATE_KEY") -o StrictHostKeyChecking=no zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
 
 
     # - name: Connect to GCP server and deploy
