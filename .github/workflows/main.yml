@@ -1,0 +1,44 @@
+name: Deploy and Test Microservice
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # - name: Set up Google Cloud SDK
+    #   uses: google-github-actions/setup-gcloud@v0.5.0
+    #   with:
+    #     project_id: ${{ secrets.GCP_PROJECT_ID }}
+    #     service_account_key: ${{ secrets.GCP_SA_KEY }}
+    #     export_default_credentials: true
+
+    - name: Connect to GCP server and deploy
+      run: |
+        ssh -i ~/.ssh/my-ssh-key zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
+
+    - name: Wait for microservice to start
+      run: sleep 10s
+
+    - name: Retrieve content with curl
+      run: |
+        http_content=$(curl -s http://35.232.201.57:8011/users)
+        echo "Retrieved Content: $http_content"
+
+    # - name: Test microservice with curl
+    #   run: |
+        # response_code=$(curl -s -o /dev/null -w "%{http_code}" http://your-microservice-url)
+        # if [ $response_code -eq 200 ]; then
+        #   echo "Microservice is running successfully"
+        #   exit 0
+        # else
+        #   echo "Microservice test failed with status code $response_code"
+        #   exit 1
+        # fi
