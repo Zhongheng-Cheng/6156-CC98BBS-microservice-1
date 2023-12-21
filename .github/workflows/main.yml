@@ -27,7 +27,7 @@ jobs:
         echo "$ssh_private_key" > ssh_private_key
         chmod 600 ssh_private_key
 
-        ssh -i ssh_private_key zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
+        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
 
         # eval "$(ssh-agent -s)"
         # ssh-add ssh_private_key
