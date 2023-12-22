@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set environment variable
+      run: echo "PORT=8011" >> $GITHUB_ENV
+    
     - name: Checkout code
       uses: actions/checkout@v2
 
