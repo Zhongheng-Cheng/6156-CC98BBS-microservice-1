@@ -25,7 +25,7 @@ jobs:
         echo "$ssh_private_key" > ssh_private_key
         chmod 600 ssh_private_key
 
-        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@$SERVER_IP "docker ps -q --filter status=running | xargs -r docker stop && docker run -d -p 8011:8011 ubuntu:ms1 sh -c 'cd ~/*CC* && git pull && python3 main.py $PORT'"
+        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@$SERVER_IP "docker ps -q --filter status=running | xargs -r docker stop && docker run -d -p $PORT:$PORT ubuntu:ms1 sh -c 'cd ~/*CC* && git pull && python3 main.py $PORT'"
 
         # eval "$(ssh-agent -s)"
         # ssh-add ssh_private_key
@@ -35,16 +35,5 @@ jobs:
 
     - name: Retrieve content with curl
       run: |
-        http_content=$(curl -s http://34.30.27.130:8011/users)
+        http_content=$(curl -s http://$SERVER_IP:$PORT/users)
         echo "Retrieved Content: $http_content"
-
-    # - name: Test microservice with curl
-    #   run: |
-        # response_code=$(curl -s -o /dev/null -w "%{http_code}" http://your-microservice-url)
-        # if [ $response_code -eq 200 ]; then
-        #   echo "Microservice is running successfully"
-        #   exit 0
-        # else
-        #   echo "Microservice test failed with status code $response_code"
-        #   exit 1
-        # fi
