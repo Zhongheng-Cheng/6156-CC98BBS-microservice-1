@@ -50,7 +50,7 @@ jobs:
 
     - name: Retrieve content with curl
       run: |
-        http_content=$(curl -s http://34.30.27.130:8012/users)
+        http_content=$(curl -s http://34.30.27.130:8011/users)
         echo "Retrieved Content: $http_content"
 
     # - name: Test microservice with curl
