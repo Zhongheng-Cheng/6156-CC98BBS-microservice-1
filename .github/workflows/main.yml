@@ -27,7 +27,7 @@ jobs:
         echo "$ssh_private_key" > ssh_private_key
         chmod 600 ssh_private_key
 
-        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@34.30.27.130 "docker run -d -p 8012:8012 ubuntu:microservice1 sh -c 'cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py'"
+        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@34.30.27.130 "docker container stop $(docker container ls -q) && docker run -d -p 8011:8011 ubuntu:ms1 sh -c 'cd ~/*CC* && git pull && python3 main.py 8011'"
 
         # eval "$(ssh-agent -s)"
         # ssh-add ssh_private_key
