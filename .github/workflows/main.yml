@@ -11,17 +11,12 @@ jobs:
 
     steps:
     - name: Set environment variable
-      run: echo "PORT=8011" >> $GITHUB_ENV
+      run: | 
+        echo "SERVER_IP=34.30.27.130" >> $GITHUB_ENV
+        echo "PORT=8011" >> $GITHUB_ENV
     
     - name: Checkout code
       uses: actions/checkout@v2
-
-    # - name: Set up Google Cloud SDK
-    #   uses: google-github-actions/setup-gcloud@v0.5.0
-    #   with:
-    #     project_id: ${{ secrets.GCP_PROJECT_ID }}
-    #     service_account_key: ${{ secrets.GCP_SA_KEY }}
-    #     export_default_credentials: true
 
     - name: Set up SSH key
       env:
@@ -30,23 +25,10 @@ jobs:
         echo "$ssh_private_key" > ssh_private_key
         chmod 600 ssh_private_key
 
-        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@34.30.27.130 "docker ps -q --filter status=running | xargs -r docker stop && docker run -d -p 8011:8011 ubuntu:ms1 sh -c 'cd ~/*CC* && git pull && python3 main.py 8011'"
+        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@$SERVER_IP "docker ps -q --filter status=running | xargs -r docker stop && docker run -d -p 8011:8011 ubuntu:ms1 sh -c 'cd ~/*CC* && git pull && python3 main.py $PORT'"
 
         # eval "$(ssh-agent -s)"
         # ssh-add ssh_private_key
-
-
-    # - name: SSH to Google Cloud Server
-    #   env:
-    #     SUPER_SECRET: ${{ secrets.ssh_private_key }}
-    #   run: |
-    #     # Replace 'your-username' and 'your-gcp-server' with your actual values
-    #     ssh -i <(echo "$YOUR_PRIVATE_KEY") -o StrictHostKeyChecking=no zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
-
-
-    # - name: Connect to GCP server and deploy
-    #   run: |
-    #     ssh -i ~/.ssh/my-ssh-key zc2737@35.232.201.57 "cd 6156-CC98BBS-microservice-1 && git pull && python3 main.py"
 
     - name: Wait for microservice to start
       run: sleep 10s
