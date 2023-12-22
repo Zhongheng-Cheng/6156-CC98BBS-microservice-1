@@ -57,6 +57,12 @@ async def root():
     return RedirectResponse("/static/index.html")
 
 
+@app.get("/users-graphql")
+async def get_users_graphql(query: str):
+    from data.graphql_test import schema
+    return schema.execute(query)
+
+
 @app.get("/users", response_model=List[UserRspModel])
 async def get_users(user_id: str = None, 
                     user_name: str = None, 
