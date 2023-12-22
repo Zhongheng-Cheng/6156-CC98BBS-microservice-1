@@ -60,7 +60,10 @@ async def root():
 @app.get("/users-graphql")
 async def get_users_graphql(query: str):
     from data.graphql_test import schema
-    return schema.execute(query)
+    print(query)
+    res = schema.execute(query)
+    print(res)
+    return res
 
 
 @app.get("/users", response_model=List[UserRspModel])
