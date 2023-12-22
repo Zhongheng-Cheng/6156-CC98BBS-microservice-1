@@ -8,6 +8,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from typing import List, Union
 import time
+import sys
 
 import uvicorn
 
@@ -131,4 +132,4 @@ async def get_user(user_id: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8012)
+    uvicorn.run(app, host="0.0.0.0", port=int(sys.argv[1]))
