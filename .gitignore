@@ -1,5 +1,8 @@
-# MacOS System File
+Project Files
+terraform/*
+!terraform/main.tf
 
+# MacOS System File
 .DS_Store
 
 # Byte-compiled / optimized / DLL files
