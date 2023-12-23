@@ -63,7 +63,7 @@ async def get_users_graphql(query: str):
     print(query)
     res = schema.execute(query)
     print(res)
-    return res
+    return res.data
 
 
 @app.get("/users", response_model=List[UserRspModel])
