@@ -43,6 +43,7 @@ def get_user_resource():
 users_resource = get_user_resource()
 
 
+# Middleware function: record processing time and contain it in the response header
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     start_time = time.time()
