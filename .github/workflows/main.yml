@@ -25,7 +25,7 @@ jobs:
         echo "$ssh_private_key" > ssh_private_key
         chmod 600 ssh_private_key
 
-        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@$SERVER_IP "docker ps -q --filter status=running | xargs -r docker stop && docker run -d -p $PORT:$PORT ubuntu:ms1 sh -c 'cd ~/*CC* && git pull && python3 main.py $PORT'"
+        ssh -i ssh_private_key -o StrictHostKeyChecking=no zc2737@$SERVER_IP "docker ps -q --filter status=running | xargs -r docker stop && docker run -d -p $PORT:$PORT ubuntu:ms1 sh -c 'cd ~/*CC* && git pull && pip3 install -r requirements.txt && python3 main.py $PORT'"
 
         # eval "$(ssh-agent -s)"
         # ssh-add ssh_private_key
